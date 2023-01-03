@@ -19,10 +19,10 @@ public class Bike extends Object {
 		return speed;
 	}
 	
-	@Override
-	public String toString() {
-		return "Brad";
-	}
+//	@Override
+//	public String toString() {
+//		return "Brad";
+//	}
 	
 	
 }
