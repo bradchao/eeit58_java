@@ -30,12 +30,23 @@ public class Brad35 extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e){
 		String eventString = e.getActionCommand();
 		if (e.getSource() == b1) {
-			System.out.println("Brad B1");
+			doB1();
 		}else if (e.getSource() == b2) {
-			System.out.println("Brad B2");
+			doB2();
 		}else if (e.getSource() == b3) {
-			System.out.println("Brad B3");
+			doB3();
 		}
+	}
+	
+	private void doB1() {
+		System.out.println("Brad B1");
+	}
+	
+	private void doB2() {
+		System.out.println("Brad B2");
+	}
+	private void doB3() {
+		System.out.println("Brad B3");
 	}
 
 	public static void main(String[] args) {
