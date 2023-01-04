@@ -5,11 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import tw.com.ispan.myclasses.Bike;
 
@@ -40,21 +36,38 @@ public class GuessNumber extends JFrame implements ActionListener {
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		answer = createAnswer(3);
-		//System.out.println(answer);
+		newGame();
 	}
 
 	public static void main(String[] args) {
 		new GuessNumber();
 	}
 
+	private void newGame() {
+		answer = createAnswer(3);
+		System.out.println(answer);
+		log.setText("");
+		counter = 0;
+	}
+	
+	private int counter;
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String inputString = input.getText();
 		if (inputString.length() == 3) {
+			counter++;
 			String result = checkAB(inputString);
-			log.append(inputString + ":" + result + "\n");
+			log.append(String.format("%d . %s => %s \n", counter, inputString, result));
 			input.setText("");
+			
+			if (result.equals("3A0B")) {
+				JOptionPane.showMessageDialog(null, "恭喜老爺");
+				newGame();
+			}else if(counter == 3) {
+				JOptionPane.showMessageDialog(null, "Loser: " + answer);
+				newGame();
+			}
+			
 		}
 	}
 	
