@@ -2,6 +2,7 @@ package tw.com.ispan.myjava;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -36,7 +37,17 @@ public class GuessNumber extends JFrame implements ActionListener {
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
+		initMember();
 		newGame();
+	}
+	
+	private void initMember() {
+		Font font1 = new Font(null, Font.BOLD, 24);
+		input.setFont(font1);
+		Font font2 = new Font(null, Font.PLAIN, 18);
+		log.setFont(font2);
+		//log.setEnabled(false);
+		log.setEditable(false);
 	}
 
 	public static void main(String[] args) {
@@ -54,7 +65,7 @@ public class GuessNumber extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String inputString = input.getText();
-		if (inputString.length() == 3) {
+		if (isValidInput(inputString)) {
 			counter++;
 			String result = checkAB(inputString);
 			log.append(String.format("%d . %s => %s \n", counter, inputString, result));
@@ -69,6 +80,11 @@ public class GuessNumber extends JFrame implements ActionListener {
 			}
 			
 		}
+	}
+	
+	private boolean isValidInput(String g) {
+		
+		return true;
 	}
 	
 	private String createAnswer(int d) {
