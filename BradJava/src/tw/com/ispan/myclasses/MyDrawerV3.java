@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 
 public class MyDrawerV3 extends JPanel {
 	private LinkedList<Line> lines, recycler;
+	private Color nowColor;
+	private float nowWidth;
 	
 	public MyDrawerV3() {
 		setBackground(Color.YELLOW);
@@ -23,6 +25,9 @@ public class MyDrawerV3 extends JPanel {
 		
 		lines = new LinkedList<>();
 		recycler = new LinkedList<>();
+		
+		nowColor = Color.RED;
+		nowWidth = 1;
 		
 	}
 	
@@ -56,7 +61,7 @@ public class MyDrawerV3 extends JPanel {
 			HashMap<String, Integer> point = new HashMap<>();
 			point.put("x", e.getX()); point.put("y", e.getY());
 			
-			Line line = new Line(Color.GREEN, 2);
+			Line line = new Line(nowColor, nowWidth);
 			line.getPoints().add(point);
 			
 //			LinkedList<HashMap<String, Integer>> line = new LinkedList<>();
@@ -93,7 +98,22 @@ public class MyDrawerV3 extends JPanel {
 		lines.add(recycler.removeLast());
 		repaint();
 	}
-	
+
+	public Color getNowColor() {
+		return nowColor;
+	}
+
+	public void setNowColor(Color nowColor) {
+		this.nowColor = nowColor;
+	}
+
+	public float getNowWidth() {
+		return nowWidth;
+	}
+
+	public void setNowWidth(float nowWidth) {
+		this.nowWidth = nowWidth;
+	}
 	
 	
 	
