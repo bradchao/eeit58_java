@@ -9,11 +9,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import tw.com.ispan.myclasses.MyDrawer;
+import tw.com.ispan.myclasses.MyDrawerV2;
+import tw.com.ispan.myclasses.MyDrawerV3;
 
 public class Sign extends JFrame{
 	private JButton clear, undo, redo;
-	private MyDrawer myDrawer;
+	private MyDrawerV3 myDrawer;
 	
 	public Sign() {
 		super("簽名");
@@ -28,7 +29,7 @@ public class Sign extends JFrame{
 		setLayout(new BorderLayout());
 		add(top, BorderLayout.NORTH);
 		
-		myDrawer = new MyDrawer();
+		myDrawer = new MyDrawerV3();
 		add(myDrawer, BorderLayout.CENTER);
 		
 		setSize(800, 480);
