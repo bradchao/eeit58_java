@@ -100,7 +100,7 @@ public class Sign extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				myDrawer.saveLines();;
+				myDrawer.saveLines();
 			}
 		});
 		loadLines.addActionListener(new ActionListener() {
