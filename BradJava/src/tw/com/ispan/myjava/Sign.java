@@ -12,13 +12,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import tw.com.ispan.myclasses.MyDrawerV2;
+import tw.com.ispan.myclasses.MyDrawer;
 import tw.com.ispan.myclasses.MyDrawerV3;
 
 public class Sign extends JFrame{
-	private JButton clear, undo, redo, chWidth, chColor;
+	private JButton clear, undo, redo, chWidth, chColor, saveJpeg;
 	private JTextField inputWidth;
-	private MyDrawerV3 myDrawer;
+	private MyDrawer myDrawer;
 	
 	public Sign() {
 		super("簽名");
@@ -29,16 +29,17 @@ public class Sign extends JFrame{
 		chWidth = new JButton("換粗細");
 		inputWidth = new JTextField(4);
 		chColor = new JButton("換顏色");
+		saveJpeg = new JButton("存JPEG");
 		
 		JPanel top = new JPanel(new FlowLayout());
 		top.add(clear); top.add(undo); top.add(redo);
 		top.add(inputWidth); top.add(chWidth);
-		top.add(chColor);
+		top.add(chColor); top.add(saveJpeg);
 		
 		setLayout(new BorderLayout());
 		add(top, BorderLayout.NORTH);
 		
-		myDrawer = new MyDrawerV3();
+		myDrawer = new MyDrawer();
 		add(myDrawer, BorderLayout.CENTER);
 		
 		setSize(800, 480);
@@ -73,7 +74,7 @@ public class Sign extends JFrame{
 		chWidth.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				myDrawer.setNowWidth(Float.parseFloat(inputWidth.getText()));
+				//myDrawer.setNowWidth(Float.parseFloat(inputWidth.getText()));
 			}
 		});
 		
@@ -84,13 +85,21 @@ public class Sign extends JFrame{
 			}
 		});
 		
+		saveJpeg.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myDrawer.saveJPEG();
+			}
+		});
+		
 	}
 	
 	private void changeColor() {
-		Color newColor = JColorChooser.showDialog(this, "選顏色", myDrawer.getNowColor());
-		if (newColor != null) {
-			myDrawer.setNowColor(newColor);
-		}
+//		Color newColor = JColorChooser.showDialog(this, "選顏色", myDrawer.getNowColor());
+//		if (newColor != null) {
+//			myDrawer.setNowColor(newColor);
+//		}
 	}
 
 	public static void main(String[] args) {
