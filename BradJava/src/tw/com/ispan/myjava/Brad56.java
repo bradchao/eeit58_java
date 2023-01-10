@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+import tw.com.ispan.myclasses.Bike;
+
 public class Brad56 {
 
 	public static void main(String[] args) {
@@ -32,9 +34,12 @@ public class Brad56 {
 class Student implements Serializable {
 	private int ch, eng, math;
 	private String name;
+	private Bike bike;
+	
 	Student(String name, int ch, int eng, int math){
 		this.name = name;
 		this.ch = ch; this.eng = eng; this.math = math;
+		bike = new Bike();
 	}
 	int sum() {return ch + eng + math;}
 	double avg() { return sum() / 3.0;}
