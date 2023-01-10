@@ -16,7 +16,8 @@ import tw.com.ispan.myclasses.MyDrawer;
 import tw.com.ispan.myclasses.MyDrawerV3;
 
 public class Sign extends JFrame{
-	private JButton clear, undo, redo, chWidth, chColor, saveJpeg;
+	private JButton clear, undo, redo, chWidth, chColor, 
+		saveJpeg, saveLines, loadLines;
 	private JTextField inputWidth;
 	private MyDrawer myDrawer;
 	
@@ -30,11 +31,14 @@ public class Sign extends JFrame{
 		inputWidth = new JTextField(4);
 		chColor = new JButton("換顏色");
 		saveJpeg = new JButton("存JPEG");
+		saveLines = new JButton("存物件");
+		loadLines = new JButton("載物件");
 		
 		JPanel top = new JPanel(new FlowLayout());
 		top.add(clear); top.add(undo); top.add(redo);
 		top.add(inputWidth); top.add(chWidth);
 		top.add(chColor); top.add(saveJpeg);
+		top.add(saveLines); top.add(loadLines);
 		
 		setLayout(new BorderLayout());
 		add(top, BorderLayout.NORTH);
@@ -90,6 +94,20 @@ public class Sign extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myDrawer.saveJPEG();
+			}
+		});
+		saveLines.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myDrawer.saveLines();;
+			}
+		});
+		loadLines.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myDrawer.loadLines();
 			}
 		});
 		

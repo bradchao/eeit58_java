@@ -8,7 +8,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -108,7 +112,28 @@ public class MyDrawer extends JPanel {
 		
 	}
 	
+	public void saveLines() {
+		try(ObjectOutputStream oout = 
+			new ObjectOutputStream(
+				new FileOutputStream("dir1/lines.sign"))){
+			oout.writeObject(lines);
+			oout.flush();
+			System.out.println("save Lines OK");
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+	}
 	
+	public void loadLines() {
+		try(ObjectInputStream oin = 
+			new ObjectInputStream(
+				new FileInputStream("dir1/lines.sign"))){
+			lines = (LinkedList<LinkedList<HashMap<String, Integer>>>)oin.readObject();
+			repaint();
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+	}
 	
 }
 
