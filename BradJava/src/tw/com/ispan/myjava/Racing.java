@@ -36,12 +36,18 @@ public class Racing extends JFrame {
 	}
 	
 	private void go() {
+		go.setEnabled(false);
+		rank = 0;
+		for (int i=0; i<lanes.length; i++) {
+			lanes[i].setText((i+1) + ". ");
+		}		
 		for(int i=0; i<cars.length; i++) {
 			cars[i] = new Car(i);
 			cars[i].start();
 		}
 	}
 	
+	private int rank;
 	
 	private class Car extends Thread {
 		private int lane;
@@ -49,16 +55,25 @@ public class Racing extends JFrame {
 		@Override
 		public void run() {
 			for(int i=0; i<100; i++) {
-				lanes[lane].setText(lanes[lane].getText() + ">");
+				lanes[lane].setText(lanes[lane].getText() + ">" + (i==99?++rank:""));
+				if (rank == 1) {
+					stopGame();
+				}
 				try {
-					Thread.sleep(100);
+					Thread.sleep(10 + (int)(Math.random()*200));
 				} catch (InterruptedException e) {
+					break;
 				}
 			}
 		}
 	}
 	
-	
+	private void stopGame() {
+		for(int i=0; i<cars.length; i++) {
+			cars[i].interrupt();
+		}
+		go.setEnabled(true);
+	}
 
 	public static void main(String[] args) {
 		new Racing();
