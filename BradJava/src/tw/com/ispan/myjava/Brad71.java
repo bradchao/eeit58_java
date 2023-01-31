@@ -7,16 +7,33 @@ import java.net.URLConnection;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class Brad71 {
 
 	public static void main(String[] args) {
 		try {
-			String json = getData("https://data.coa.gov.tw/Service/OpenData/ODwsv/ODwsvAgriculturalProduce.aspx");
+			String json = getData("https://data.coa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelStay.aspx");
+			//System.out.println(json);
+			parseJSON(json);
 			
 		}catch(Exception e) {
 			System.out.println(e);
 		}
 	}
+	
+	static void parseJSON(String json) {
+		JSONArray root = new JSONArray(json);
+		for (int i=0; i<root.length(); i++) {
+			JSONObject row = root.getJSONObject(i);
+			String name = row.getString("Name");
+			String country = row.getString("City");
+			String town = row.getString("Town");
+			System.out.printf("%s:%s:%s\n", name, country, town);
+		}
+	}
+	
 	
 	static String getData(String urlString) throws Exception {
 		URL url = new URL(urlString);
