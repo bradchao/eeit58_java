@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Properties;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -23,7 +27,17 @@ public class Brad71 {
 		}
 	}
 	
-	static void parseJSON(String json) {
+	static void parseJSON(String json) throws Exception {
+		String url = "jdbc:mysql://127.0.0.1:3306/iii";
+		Properties prop = new Properties();
+		prop.setProperty("user", "root");
+		prop.setProperty("password", "root");
+		prop.setProperty("serverTimezone", "Asia/Taipei");
+		Connection conn = DriverManager.getConnection(url, prop);
+		
+		String sql = "INSERT INTO gift (name,place,city,town,lat,lng,pic) VALUES (?,?,?,?,?,?,?)";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
 		JSONArray root = new JSONArray(json);
 		for (int i=0; i<root.length(); i++) {
 			JSONObject row = root.getJSONObject(i);
@@ -34,8 +48,17 @@ public class Brad71 {
 			String lat = row.getString("Latitude");
 			String lng = row.getString("Longitude");
 			String pic = row.getString("Column1");
-			System.out.printf("%s:%s:%s:%s:%s:%s\n", name, place, city, town, lat, lng);
+			
+			pstmt.setString(1, name);
+			pstmt.setString(2, place);
+			pstmt.setString(3, city);
+			pstmt.setString(4, town);
+			pstmt.setString(5, lat);
+			pstmt.setString(6, lng);
+			pstmt.setString(7, pic);
+			pstmt.executeUpdate();
 		}
+		System.out.println("OK");
 	}
 	
 	
