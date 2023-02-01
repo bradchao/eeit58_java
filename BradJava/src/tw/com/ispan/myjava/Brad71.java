@@ -14,7 +14,7 @@ public class Brad71 {
 
 	public static void main(String[] args) {
 		try {
-			String json = getData("https://data.coa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelStay.aspx");
+			String json = getData("https://data.coa.gov.tw/Service/OpenData/ODwsv/ODwsvAgriculturalProduce.aspx");
 			//System.out.println(json);
 			parseJSON(json);
 			
@@ -28,9 +28,13 @@ public class Brad71 {
 		for (int i=0; i<root.length(); i++) {
 			JSONObject row = root.getJSONObject(i);
 			String name = row.getString("Name");
-			String country = row.getString("City");
-			String town = row.getString("Town");
-			System.out.printf("%s:%s:%s\n", name, country, town);
+			String place = row.getString("SalePlace");
+			String city = row.getString("County");
+			String town = row.getString("Township");
+			String lat = row.getString("Latitude");
+			String lng = row.getString("Longitude");
+			String pic = row.getString("Column1");
+			System.out.printf("%s:%s:%s:%s:%s:%s\n", name, place, city, town, lat, lng);
 		}
 	}
 	
