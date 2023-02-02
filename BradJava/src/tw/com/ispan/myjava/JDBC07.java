@@ -47,10 +47,7 @@ public class JDBC07 {
 		}catch (Exception e) {
 			System.out.println(e);
 		}
-		
-		
 	}
-	
 	
 	private static boolean checkAccount(String account) throws Exception {
 		boolean ret;
