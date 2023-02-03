@@ -14,7 +14,13 @@ public class MyTable extends JTable {
 		
 		myModel = new MyModel();
 		setModel(myModel);
+		myModel.setColumnIdentifiers(db.getHeader());
 		
+	}
+	
+	public void delRow() {
+		myModel.removeRow(getSelectedRow());
+		repaint();
 	}
 	
 	
@@ -37,9 +43,21 @@ public class MyTable extends JTable {
 
 		@Override
 		public void setValueAt(Object aValue, int row, int column) {
-			// TODO Auto-generated method stub
-			super.setValueAt(aValue, row, column);
+			db.updateData(row+1, column+1, (String)aValue);
 		}
+
+		@Override
+		public boolean isCellEditable(int row, int column) {
+			return column > 0;
+		}
+
+		@Override
+		public void removeRow(int row) {
+			db.delRow(row+1);
+		}
+		
+		
+		
 		
 	}
 }

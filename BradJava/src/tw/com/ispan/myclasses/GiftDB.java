@@ -60,4 +60,27 @@ public class GiftDB {
 		}
 	}
 	
+	public String[] getHeader() {
+		return fieldNames;
+	}
+	
+	public void updateData(int row, int col, String data) {
+		try {
+			rs.absolute(row);
+			rs.updateString(col, data);
+			rs.updateRow();
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	public void delRow(int row) {
+		try {
+			rs.absolute(row);
+			rs.deleteRow();
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 }

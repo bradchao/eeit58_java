@@ -2,6 +2,8 @@ package tw.com.ispan.myjava;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,6 +28,12 @@ public class JDBC13 extends JFrame{
 		JScrollPane jsp = new JScrollPane(myTable);
 		add(jsp, BorderLayout.CENTER);
 		
+		del.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myTable.delRow();
+			}
+		});
 		
 		setSize(640, 480);
 		setVisible(true);
