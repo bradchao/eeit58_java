@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import tw.com.ispan.myclasses.MyTable;
 
@@ -22,7 +23,8 @@ public class JDBC13 extends JFrame{
 		add(top, BorderLayout.NORTH);
 		
 		myTable = new MyTable();
-		add(myTable, BorderLayout.CENTER);
+		JScrollPane jsp = new JScrollPane(myTable);
+		add(jsp, BorderLayout.CENTER);
 		
 		
 		setSize(640, 480);
